@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">My Storybook</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="save">save</string>
+    <string name="delete">Delete</string>
+    <string name="share">Share</string>
+    <string name="edit_story">Edit story</string>
+    <string name="filer_story_text">Title: %1$s\n Date: %2$s \n Text:%3$s</string>
+</resources>

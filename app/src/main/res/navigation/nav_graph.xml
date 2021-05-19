@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/storybookListFragment">
+
+    <fragment
+        android:id="@+id/storybookListFragment"
+        android:name="com.ziemapp.johnzieman.mystorybook.StorybookListFragment"
+        android:label="fragment_storybook_list"
+        tools:layout="@layout/fragment_storybook_list" >
+        <action
+            android:id="@+id/action_storybookListFragment_to_storyBookViewFragment"
+            app:destination="@id/storyBookViewFragment" />
+        <action
+            android:id="@+id/action_storybookListFragment_to_storybookFragment"
+            app:destination="@id/storybookFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/storybookFragment"
+        android:name="com.ziemapp.johnzieman.mystorybook.StorybookFragment"
+        android:label="fragment_storybook"
+        tools:layout="@layout/fragment_storybook" >
+        <action
+            android:id="@+id/action_storybookFragment_to_storyBookViewFragment"
+            app:destination="@id/storyBookViewFragment" />
+        <argument
+            android:name="story_id"
+            app:argType="java.util.UUID" />
+        <action
+            android:id="@+id/action_storybookFragment_to_storybookListFragment"
+            app:destination="@id/storybookListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/storyBookViewFragment"
+        android:name="com.ziemapp.johnzieman.mystorybook.StoryBookViewFragment"
+        android:label="fragment_story_book_view"
+        tools:layout="@layout/fragment_story_book_view" >
+        <action
+            android:id="@+id/action_storyBookViewFragment_to_storybookFragment"
+            app:destination="@id/storybookFragment" />
+        <argument
+            android:name="story_id"
+            app:argType="java.util.UUID" />
+        <action
+            android:id="@+id/action_storyBookViewFragment_to_storybookListFragment"
+            app:destination="@id/storybookListFragment" />
+    </fragment>
+</navigation>
