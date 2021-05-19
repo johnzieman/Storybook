@@ -1,14 +1,16 @@
 # Storybook
 Notes and Long Stories
 
-# Main Idea
-You can save a note (story) and they will be saved to the database.
+#### Main Idea
+You can save a notes (story) and they will be saved to the database.\n
 You can add, delete, edit a note (history). 
 
-# What was used 
-Architecture components(viewmodel, room, livedata)
-Fragments(Jetpack Navigation and supportFragmentManager)
-Executors were used for multithreading
+#### What was used 
+Architecture components(viewmodel, room, livedata)\n
+
+Fragments(Jetpack Navigation and supportFragmentManager)\n
+
+Executors were used for multithreading\n
 
 # ScreenShots (Portrait)
 <a href="url"><img src="https://github.com/johnzieman/Storybook/blob/main/screenshots/photo_2021-05-20_00-17-24.jpg" width="200" ></a>
