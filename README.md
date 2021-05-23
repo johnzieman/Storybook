@@ -6,6 +6,8 @@ You can save a notes (story) and they will be saved to the database.
 You can add, delete, edit a note (history). 
 
 #### What was used 
+MVC pattern
+
 Architecture components(viewmodel, room, livedata)
 
 Fragments(Jetpack Navigation and supportFragmentManager)
