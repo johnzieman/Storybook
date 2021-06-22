@@ -2,7 +2,7 @@
 Notes and Long Stories
 
 #### Main Idea
-You can save a notes (story) and they will be saved to the database.
+You can save a note (story) and it will be saved to the database.
 You can add, delete, edit a note (history). 
 
 #### What was used 
