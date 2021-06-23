@@ -100,13 +100,8 @@ class StorybookListFragment : Fragment() {
         @SuppressLint("SetTextI18n")
         fun bind(story: Story, position: Int) {
             this.story = story
-            if(story.title.isEmpty()){
-                story.title = "Unnamed title"
-            }
-            val neededTitleSize = story.title.substring(0, Math.min(25, story.title.length))
-            val neededDescriptionSize = story.description.substring(0, Math.min(100, story.description.length))
-            storyTitle.text = neededTitleSize
-            storyDescription.text = neededDescriptionSize
+            storyTitle.text = story.description
+            storyDescription.text = story.description
             val currentDate = setTimeFormat(story)
             storyDate.text = currentDate
         }
