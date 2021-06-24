@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.room.Room
 import com.ziemapp.johnzieman.mystorybook.database.StoryDatabase
 import com.ziemapp.johnzieman.mystorybook.models.Story
+import java.io.File
 import java.util.*
 import java.util.concurrent.Executors
 
@@ -22,6 +23,7 @@ class StorybookRepository private constructor(context: Context) {
 
     private val storyDao = datebase.getStoryDao()
     private val executor = Executors.newSingleThreadExecutor()
+    private val filesDir = context.applicationContext.filesDir
 
     fun getStories(): LiveData<List<Story>> = storyDao.getStories()
     fun getStory(id: UUID): LiveData<Story?> = storyDao.getStory(id)
@@ -30,6 +32,9 @@ class StorybookRepository private constructor(context: Context) {
             storyDao.addStory(story)
         }
     }
+
+    fun getPhotoFile(story : Story): File = File(filesDir, story.photoFileName)
+
     fun updateStory(story: Story){
         executor.execute{
             storyDao.updateStory(story)

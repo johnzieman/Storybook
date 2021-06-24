@@ -11,4 +11,7 @@ data class Story(
     var date: Date = Date(),
     var title: String = "",
     var description: String = ""
-    )
+    ){
+    val photoFileName
+        get() = "IMG_$id.jpg"
+}
