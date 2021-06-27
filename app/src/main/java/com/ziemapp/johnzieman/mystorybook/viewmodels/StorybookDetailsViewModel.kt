@@ -6,6 +6,7 @@ import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.ziemapp.johnzieman.mystorybook.StorybookRepository
 import com.ziemapp.johnzieman.mystorybook.models.Story
+import java.io.File
 import java.util.*
 
 class StorybookDetailsViewModel: ViewModel() {
@@ -25,5 +26,9 @@ class StorybookDetailsViewModel: ViewModel() {
     }
     fun deleteStory(story: Story){
         storybookRepository.deleteStory(story)
+    }
+
+    fun getPhotoFile(story: Story): File {
+        return storybookRepository.getPhotoFile(story)
     }
 }

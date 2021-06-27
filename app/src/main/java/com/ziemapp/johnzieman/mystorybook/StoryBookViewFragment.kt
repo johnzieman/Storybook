@@ -1,9 +1,11 @@
 package com.ziemapp.johnzieman.mystorybook
 
 import android.content.Context
+import android.net.Uri
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
+import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -13,6 +15,7 @@ import com.ziemapp.johnzieman.mystorybook.callbacks.SelectedStory
 import com.ziemapp.johnzieman.mystorybook.databinding.FragmentStoryBookViewBinding
 import com.ziemapp.johnzieman.mystorybook.models.Story
 import com.ziemapp.johnzieman.mystorybook.viewmodels.StorybookDetailsViewModel
+import java.io.File
 import java.util.*
 
 
@@ -21,6 +24,9 @@ class StoryBookViewFragment : Fragment() {
     private val binding get() = _binding!!
 
     private var editStory:EditStory? = null
+
+    private lateinit var photoFile: File
+    private lateinit var photoUri: Uri
 
     private val args: StoryBookViewFragmentArgs by navArgs()
 
@@ -58,6 +64,12 @@ class StoryBookViewFragment : Fragment() {
             androidx.lifecycle.Observer { story ->
                 story?.let {
                     this.story = story
+                    photoFile = storybookDetailsViewModel.getPhotoFile(story)
+                    photoUri = FileProvider.getUriForFile(
+                        requireActivity(),
+                        "com.ziemapp.johnzieman.mystorybook.fileprovider",
+                        photoFile
+                    )
                     updateUI(this.story)
                 }
             }
@@ -96,6 +108,16 @@ class StoryBookViewFragment : Fragment() {
         binding.detailDate.text = story.date.toString()
         binding.detailTitle.text = story.title
         binding.detailDescription.text = story.description
+        updatePhotoView()
+    }
+
+    private fun updatePhotoView() {
+        if (photoFile.exists()) {
+            val bitmap = UtilsPicture().getScaledBitmap(photoFile.path, requireActivity())
+            binding.imageView.setImageBitmap(bitmap)
+        } else {
+            binding.imageView.setImageDrawable(null)
+        }
     }
 
     override fun onDetach() {

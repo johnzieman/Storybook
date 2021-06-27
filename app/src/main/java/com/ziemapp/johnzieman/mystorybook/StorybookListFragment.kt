@@ -12,6 +12,7 @@ import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ziemapp.johnzieman.mystorybook.callbacks.SavedStory
@@ -100,7 +101,7 @@ class StorybookListFragment : Fragment() {
         @SuppressLint("SetTextI18n")
         fun bind(story: Story, position: Int) {
             this.story = story
-            storyTitle.text = story.description
+            storyTitle.text = story.title
             storyDescription.text = story.description
             val currentDate = setTimeFormat(story)
             storyDate.text = currentDate
@@ -158,10 +159,14 @@ class StorybookListFragment : Fragment() {
         }
     }
 
+
+
     override fun onDetach() {
         super.onDetach()
         selectedStory = null
         savedStory = null
+        activity?.moveTaskToBack(true)
+        activity?.finish()
     }
 
     override fun onDestroy() {

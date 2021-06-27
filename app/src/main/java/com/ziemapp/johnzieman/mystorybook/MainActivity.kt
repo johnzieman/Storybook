@@ -1,7 +1,7 @@
 package com.ziemapp.johnzieman.mystorybook
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.ziemapp.johnzieman.mystorybook.callbacks.EditStory
@@ -37,4 +37,6 @@ class MainActivity : AppCompatActivity(), SelectedStory, SavedStory, EditStory {
         val action = StoryBookViewFragmentDirections.actionStoryBookViewFragmentToStorybookFragment(storyId)
         navController.navigate(action)
     }
+
+
 }
