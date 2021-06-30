@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Notebook</string>
+    <string name="title">"Titolo "</string>
+    <string name="description">Descrizione</string>
+    <string name="save">Salva</string>
+    <string name="delete">Elimina</string>
+    <string name="share">Condividere</string>
+    <string name="edit_story">" Modifica nota"</string>
+    <string name="not_saved">Non salvato. I campi di testo erano vuoti</string>
+    <string name="swipe_left">Scorri verso sinistra per rimuovere</string>
+    <string name="empty_title">Per salvare la tua nota aggiungi del testo al titolo</string>
+    <string name="filer_story_text">Titolo: %1$s Data: %2$s Testo:%3$s</string>
+</resources>

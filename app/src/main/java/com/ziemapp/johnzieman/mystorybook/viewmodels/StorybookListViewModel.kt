@@ -10,4 +10,8 @@ class StorybookListViewModel: ViewModel() {
     fun addStory(story: Story){
         storybookRepository.addStory(story)
     }
+
+    fun delete(story: Story){
+        storybookRepository.deleteStory(story)
+    }
 }

@@ -13,13 +13,11 @@ class UtilsPicture {
     }
 
     fun getScaledBitmap(path: String, destWidth: Int, destHeight: Int): Bitmap {
-// Чтение размеров изображения на диске
         var options = BitmapFactory.Options()
         options.inJustDecodeBounds = true
         BitmapFactory.decodeFile(path, options)
         val srcWidth = options.outWidth.toFloat()
         val srcHeight = options.outHeight.toFloat()
-// Выясняем, на сколько нужно уменьшить
         var inSampleSize = 1
         if (srcHeight > destHeight || srcWidth > destWidth) {
             val heightScale = srcHeight / destHeight
@@ -33,7 +31,6 @@ class UtilsPicture {
         }
         options = BitmapFactory.Options()
         options.inSampleSize = inSampleSize
-// Чтение и создание окончательного растрового изображения
         return BitmapFactory.decodeFile(path, options)
     }
 }
