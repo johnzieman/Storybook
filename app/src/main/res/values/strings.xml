@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Notebook</string>
+    <string name="app_name" translatable="false">Notebook</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title">Title</string>
@@ -7,6 +7,9 @@
     <string name="save">save</string>
     <string name="delete">Delete</string>
     <string name="share">Share</string>
-    <string name="edit_story">Edit story</string>
-    <string name="filer_story_text">Title: %1$s\n Date: %2$s \n Text:%3$s</string>
+    <string name="edit_story">Edit note</string>
+    <string name="filer_story_text">Title: %1$s  Date: %2$s   Text:%3$s</string>
+    <string name="not_saved">Not saved. The text fields were empty</string>
+    <string name="swipe_left">Swipe left to remove</string>
+    <string name="empty_title">To save your note add text to the title</string>
 </resources>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Notebook</string>
+    <string name="filer_story_text">Titel: %1$s Datum: %2$s Text:%3$s</string>
+    <string name="title">Titel</string>
+    <string name="description">Beschreibung</string>
+    <string name="save">speichern</string>
+    <string name="delete">Löschen</string>
+    <string name="share">Teilen</string>
+    <string name="edit_story">Notiz bearbeiten</string>
+    <string name="not_saved">Nicht gespeichert. Die Textfelder waren leer</string>
+    <string name="empty_title">" Um Ihre Notiz zu speichern, fügen Sie dem Titel Text hinzu"</string>
+    <string name="swipe_left">" Zum Entfernen nach links wischen"</string>
+</resources>

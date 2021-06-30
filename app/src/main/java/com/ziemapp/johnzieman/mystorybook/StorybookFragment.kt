@@ -143,7 +143,7 @@ class StorybookFragment : Fragment(), DataPickerFragment.SelectedStoryDate {
                 binding.titleText.setHintTextColor(setWarningColor)
                 Toast.makeText(
                     context,
-                    "To save your note add text to the title",
+                    getString(R.string.empty_title),
                     Toast.LENGTH_SHORT
                 ).show()
             } else {
@@ -151,7 +151,7 @@ class StorybookFragment : Fragment(), DataPickerFragment.SelectedStoryDate {
                 val action =
                     StorybookFragmentDirections.actionStorybookFragmentToStorybookListFragment()
                 it.findNavController().navigate(action)
-                Toast.makeText(context, "Swipe left or right to delete a note", Toast.LENGTH_SHORT)
+                Toast.makeText(context, getString(R.string.swipe_left), Toast.LENGTH_SHORT)
                     .show()
             }
 
@@ -206,13 +206,7 @@ class StorybookFragment : Fragment(), DataPickerFragment.SelectedStoryDate {
 
     override fun onStop() {
         super.onStop()
-        if (story.title.isBlank()) {
-            storybookDetailsViewModel.deleteStory(this.story)
-            Toast.makeText(context, "Not saved. The text fields were empty", Toast.LENGTH_SHORT)
-                .show()
-        } else {
-            storybookDetailsViewModel.saveStory(story)
-        }
+        storybookDetailsViewModel.saveStory(story)
     }
 
     override fun onDetach() {
@@ -225,6 +219,13 @@ class StorybookFragment : Fragment(), DataPickerFragment.SelectedStoryDate {
 
     override fun onDestroy() {
         super.onDestroy()
+        if (story.title.isBlank()) {
+            storybookDetailsViewModel.deleteStory(this.story)
+            Toast.makeText(context, getString(R.string.not_saved), Toast.LENGTH_SHORT)
+                .show()
+        } else {
+            storybookDetailsViewModel.saveStory(story)
+        }
         _binding = null
     }
 

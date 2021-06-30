@@ -7,18 +7,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SimpleAdapter
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ziemapp.johnzieman.mystorybook.callbacks.SavedStory
 import com.ziemapp.johnzieman.mystorybook.callbacks.SelectedStory
 import com.ziemapp.johnzieman.mystorybook.databinding.FragmentStorybookListBinding
 import com.ziemapp.johnzieman.mystorybook.models.Story
+import com.ziemapp.johnzieman.mystorybook.swiper.DeleteOnSwipeCallback
 import com.ziemapp.johnzieman.mystorybook.viewmodels.StorybookListViewModel
 import java.text.DateFormat
 import java.util.*
@@ -30,6 +32,7 @@ class StorybookListFragment : Fragment() {
     private val storybookListViewModel: StorybookListViewModel by lazy {
         ViewModelProvider(this).get(StorybookListViewModel::class.java)
     }
+
     private var storyAdapter: StoryAdapter? = null
     private lateinit var story: Story
     private var selectedStory: SelectedStory? = null
@@ -60,6 +63,15 @@ class StorybookListFragment : Fragment() {
                 updateUI(stories )
             }
         )
+        val swipeHandler = object : DeleteOnSwipeCallback(requireActivity()) {
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val adapter = storyAdapter
+                adapter?.removeAt(viewHolder.adapterPosition)
+            }
+        }
+        val itemTouchHelper = ItemTouchHelper(swipeHandler)
+        val recyclerView = binding.storyListRecyclerView
+        itemTouchHelper.attachToRecyclerView(recyclerView)
     }
 
 
@@ -84,10 +96,15 @@ class StorybookListFragment : Fragment() {
             holder.storyParent.setBackgroundColor(setRandomColor)
         }
 
-
-
         override fun getItemCount() = stories.size
+
+        fun removeAt(position: Int) {
+            storybookListViewModel.delete(stories[position])
+            notifyItemRemoved(position)
+        }
     }
+
+
 
     private inner class StoryViewHolder(view: View) : RecyclerView.ViewHolder(view),
         View.OnClickListener {
@@ -165,6 +182,7 @@ class StorybookListFragment : Fragment() {
         super.onDetach()
         selectedStory = null
         savedStory = null
+        
         activity?.moveTaskToBack(true)
         activity?.finish()
     }
