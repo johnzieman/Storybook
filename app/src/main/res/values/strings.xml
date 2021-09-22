@@ -12,4 +12,5 @@
     <string name="not_saved">Not saved. The text fields were empty</string>
     <string name="swipe_left">Swipe left to remove</string>
     <string name="empty_title">To save your note add text to the title</string>
+    <string name="no_subject">No subject</string>
 </resources>

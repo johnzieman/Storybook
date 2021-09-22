@@ -188,8 +188,8 @@ class StorybookFragment : Fragment(), DataPickerFragment.SelectedStoryDate {
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        when {
-            requestCode == REQUEST_PHOTO -> {
+        when (requestCode) {
+            REQUEST_PHOTO -> {
                 requireActivity().revokeUriPermission(
                     photoUri,
                     Intent.FLAG_GRANT_WRITE_URI_PERMISSION

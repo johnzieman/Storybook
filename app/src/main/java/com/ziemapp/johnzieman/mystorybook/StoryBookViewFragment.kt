@@ -1,6 +1,8 @@
 package com.ziemapp.johnzieman.mystorybook
 
+import android.content.ActivityNotFoundException
 import android.content.Context
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.*
@@ -23,7 +25,7 @@ class StoryBookViewFragment : Fragment() {
     private var _binding: FragmentStoryBookViewBinding? = null
     private val binding get() = _binding!!
 
-    private var editStory:EditStory? = null
+    private var editStory: EditStory? = null
 
     private lateinit var photoFile: File
     private lateinit var photoUri: Uri
@@ -37,7 +39,7 @@ class StoryBookViewFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-            editStory = (context as EditStory?)
+        editStory = (context as EditStory?)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -84,9 +86,26 @@ class StoryBookViewFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
-        return when(item.itemId) {
+        return when (item.itemId) {
             R.id.menu_share -> {
-                Toast.makeText(this@StoryBookViewFragment.context, "Will be shared soon!", Toast.LENGTH_SHORT).show()
+                val sendIntent = Intent().apply {
+                    action = Intent.ACTION_SEND
+                    if (story.title.isBlank()) {
+                        putExtra(Intent.EXTRA_SUBJECT, getString(R.string.no_subject))
+                    } else {
+                        putExtra(Intent.EXTRA_SUBJECT, story.title)
+                    }
+                    putExtra(Intent.EXTRA_TEXT, story.description)
+                    type = "text/plain"
+                }
+
+                try {
+                    val chooserIntent = Intent.createChooser(sendIntent, "Send your note via")
+                    startActivity(chooserIntent)
+                } catch (e: ActivityNotFoundException) {
+                    Toast.makeText(requireContext(), "Service is unavailable", Toast.LENGTH_LONG)
+                        .show()
+                }
                 true
             }
             R.id.menu_delete -> {
