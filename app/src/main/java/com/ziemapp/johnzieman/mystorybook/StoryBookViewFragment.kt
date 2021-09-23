@@ -92,10 +92,17 @@ class StoryBookViewFragment : Fragment() {
                     action = Intent.ACTION_SEND
                     if (story.title.isBlank()) {
                         putExtra(Intent.EXTRA_SUBJECT, getString(R.string.no_subject))
+                        putExtra(
+                            Intent.EXTRA_TEXT,
+                            "Title: ${getString(R.string.no_subject)}\nText: ${story.title}"
+                        )
                     } else {
+                        putExtra(
+                            Intent.EXTRA_TEXT,
+                            "Title: ${story.title}\nText: ${story.description}"
+                        )
                         putExtra(Intent.EXTRA_SUBJECT, story.title)
                     }
-                    putExtra(Intent.EXTRA_TEXT, story.description)
                     type = "text/plain"
                 }
 
